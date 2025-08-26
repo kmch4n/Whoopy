@@ -2,7 +2,7 @@ from typing import Any
 import logging
 import json
 
-from .action import Action
+from .location import Location
 from .user import User
 
 logger = logging.getLogger(__name__)
@@ -14,15 +14,15 @@ class Whoo:
         with open('header.json','r') as f:
             headers: dict[str, Any] = json.load(f)
         headers["Authorization"] = f"Bearer {token}"
-        self.action = Action(headers)
+        self.location = Location(headers)
         self.user = User(headers)
 
     def log(self, text: str) -> None:
         logger.info(text)
 
-    # Action
+    # Location
     def online(self) -> str:
-        return self.action.online()
+        return self.location.online()
 
     def find_user(self, user_name: str) -> json:
         return self.user.find_user(user_name)
@@ -36,4 +36,4 @@ class Whoo:
         stayed_at : 滞在時間
         speed : 速度 (km/h)
         '''
-        return self.action.update_location(latitude, longitude, battery_level, battery_status, stayed_at, speed)
+        return self.location.update_location(latitude, longitude, battery_level, battery_status, stayed_at, speed)

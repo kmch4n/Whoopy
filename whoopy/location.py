@@ -1,7 +1,7 @@
 import requests
 from requests.exceptions import HTTPError, RequestException
 
-class Action:
+class Location:
     def __init__(self, headers: dict):
         self.headers = headers
 
