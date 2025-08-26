@@ -28,14 +28,6 @@ class Action:
             raise Exception(f"Request failed while trying to go offline: {req_err}") from req_err
 
     def update_location(self, latitude: str, longitude: str, battery_level: int , battery_status : str, stayed_at: str , speed: int) -> None:
-        '''
-        latitude : 緯度
-        longitude : 経度
-        battery_level : バッテリー残量 (%)
-        battery_status : バッテリー状態 [0,1,2,3] = [不明、充電中、充電完了、充電していない]
-        stayed_at : 滞在時間
-        speed : 速度 (km/h)
-        '''
         url = 'https://www.wh00.ooo/api/user/location'
         params = {
             "user_location" : {
