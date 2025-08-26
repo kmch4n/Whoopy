@@ -20,8 +20,20 @@ class Whoo:
     def log(self, text: str) -> None:
         logger.info(text)
 
+    # Action
     def online(self) -> str:
         return self.action.online()
 
     def find_user(self, user_name: str) -> json:
         return self.user.find_user(user_name)
+
+    def update_location(self, latitude: str, longitude: str, battery_level: int = 100, battery_status: str = 2, stayed_at: str = '1970-01-01 05:00:32 +0000', speed: int = 0) -> None:
+        '''
+        latitude : 緯度
+        longitude : 経度
+        battery_level : バッテリー残量 (%)
+        battery_status : バッテリー状態 [0,1,2,3] = [不明、充電中、充電完了、充電していない]
+        stayed_at : 滞在時間
+        speed : 速度 (km/h)
+        '''
+        return self.action.update_location(latitude, longitude, battery_level, battery_status, stayed_at, speed)
