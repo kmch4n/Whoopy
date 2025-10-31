@@ -1,26 +1,43 @@
-import json
-import requests
-from requests.exceptions import HTTPError, RequestException
+"""User management for Whoopy API."""
+from typing import Any
+from .utils import HTTPClient
+
 
 class User:
-    def __init__(self, headers: dict):
-        self.headers = headers
+    """Handle user-related API operations."""
 
-    def find_user(self, user_name: str) -> json:
+    def __init__(self, headers: dict):
+        """
+        Initialize User instance.
+
+        Args:
+            headers: HTTP headers for API requests
+        """
+        self.client = HTTPClient(headers)
+
+    def find_user(self, user_name: str) -> dict[str, Any]:
+        """
+        Find user by display name.
+
+        Args:
+            user_name: Display name to search for
+
+        Returns:
+            User information dictionary
+
+        Raises:
+            ValueError: If no user found with the given name
+        """
         params = {
-            "display_name" : user_name
+            "display_name": user_name
         }
-        try:
-            response = requests.get(f'https://www.wh00.ooo/api/friends/search', params=params, headers=self.headers)
-            response.raise_for_status()
-            data = response.json()
-            friends = data.get("friends")
-            if not isinstance(friends, list) or len(friends) == 0:
-                raise ValueError(f"No user found with name '{user_name}'.")
-            return friends[0]
-        except HTTPError as http_err:
-            status_code = http_err.response.status_code if http_err.response else 'N/A'
-            raise Exception(f"[{status_code}] Failed to get user: {http_err}") from http_err
-        except RequestException as req_err:
-            raise Exception(f"Request failed while getting user: {req_err}") from req_err
+        response = self.client.get(
+            'https://www.wh00.ooo/api/friends/search',
+            params=params
+        )
+        data = response.json()
+        friends = data.get("friends")
+        if not isinstance(friends, list) or len(friends) == 0:
+            raise ValueError(f"No user found with name '{user_name}'.")
+        return friends[0]
 
