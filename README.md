@@ -34,29 +34,29 @@ pip install -r requirements.txt
 from whoopy import Client, BatteryState
 
 # Authenticate with token
-client = Client(access_token='your_token_here')
+cl = Client(access_token='your_token_here')
 
 # Or authenticate with email and password
-client = Client(email='your@email.com', password='your_password')
+cl = Client(email='your@email.com', password='your_password')
 ```
 
 ### Account Management
 
 ```python
 # Get current user information
-user_info = client.info()
+user_info = cl.info()
 print(user_info)
 
 # Update account information
-client.update_account(
+cl.update_account(
     name="New Name",
     username="new_username",
     profile_image="image_url"
 )
 
 # Create a new account
-client = Client()  # Initialize without authentication
-account = client.create_account(
+cl = Client()  # Initialize without authentication
+account = cl.create_account(
     email="user@example.com",
     password="password123",
     name="Username",
@@ -70,22 +70,22 @@ account = client.create_account(
 
 ```python
 # Get friends list
-friends = client.get_friends()
+friends = cl.get_friends()
 
 # Send friend request
-client.request_friend(user_id=12345)
+cl.request_friend(user_id=12345)
 
 # Get pending requests
-requested = client.get_requested()
+requested = cl.get_requested()
 
 # Cancel friend request
-client.delete_requested(user_id=12345)
+cl.delete_requested(user_id=12345)
 
 # Get specific user information
-user = client.get_user(user_id=12345, friends=True)
+user = cl.get_user(user_id=12345, friends=True)
 
 # Search for user by display name
-user = client.find_user("username")
+user = cl.find_user("username")
 ```
 
 ### Location Operations
@@ -93,7 +93,7 @@ user = client.find_user("username")
 ```python
 # Update location
 location = {"latitude": 35.6762, "longitude": 139.6503}
-client.update_location(
+cl.update_location(
     location=location,
     level=80,  # Battery level (0-100)
     state=BatteryState.DISCHARGING,  # Battery state
@@ -102,33 +102,33 @@ client.update_location(
 )
 
 # Get friends' locations
-locations = client.get_locations()
+locations = cl.get_locations()
 for username, loc in locations.items():
     print(f"{username}: {loc['latitude']}, {loc['longitude']}")
     print(f"Map link: {loc['map']}")
 
 # Request location update
-client.reacquire_location(user_id=12345)
+cl.reacquire_location(user_id=12345)
 ```
 
 ### Messaging
 
 ```python
 # Send text message
-client.send_message(room_id="room_id", content="Hello!")
+cl.send_message(room_id="room_id", content="Hello!")
 
 # Send stamp
-client.send_stamp(user_id=12345, stamp_id=83, quantity=1)
+cl.send_stamp(user_id=12345, stamp_id=83, quantity=1)
 ```
 
 ### Status Management
 
 ```python
 # Go online
-client.online()
+cl.online()
 
 # Go offline
-client.offline()
+cl.offline()
 ```
 
 ## API Reference
