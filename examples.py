@@ -1,7 +1,7 @@
 """
 Whoopy API Usage Examples
 """
-from whoopy import Client, BatteryState
+from whoopy import Whoopy, BatteryState
 
 
 def example_authentication():
@@ -9,13 +9,13 @@ def example_authentication():
     print("=== Authentication Examples ===")
 
     # Method 1: Initialize with access token
-    cl = Client(access_token='your_token_here')
+    cl = Whoopy(access_token='your_token_here')
 
     # Method 2: Initialize with email and password
-    cl = Client(email='your@email.com', password='your_password')
+    cl = Whoopy(email='your@email.com', password='your_password')
 
     # Method 3: Initialize without authentication (for create_account, etc.)
-    cl = Client()
+    cl = Whoopy()
 
     print("Authentication complete")
 
@@ -130,7 +130,7 @@ def example_account_creation():
     """Account creation examples"""
     print("\n=== Account Creation Examples ===")
 
-    cl = Client()  # No authentication
+    cl = Whoopy()  # No authentication
 
     # Basic account creation
     account = cl.create_account(
@@ -162,7 +162,7 @@ def main():
 
     # Valid token required for actual operations
     try:
-        cl = Client(access_token='your_valid_token_here')
+        cl = Whoopy(access_token='your_valid_token_here')
 
         # Run examples for each feature
         example_account_management(cl)

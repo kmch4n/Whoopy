@@ -5,12 +5,12 @@ from typing import Dict, Optional
 from .enums import BatteryState, HttpStatus, SPEED_CONVERSION_FACTOR, DEFAULT_BATTERY_LEVEL, DEFAULT_BATTERY_STATE
 
 
-class Client:
-    """Client class for Whoo API"""
+class Whoopy:
+    """Whoopy class for Whoo API"""
 
     def __init__(self, access_token=None, verbose=True, email=None, password=None):
         """
-        Initialize Client
+        Initialize Whoopy
 
         Args:
             access_token: Access token (optional)
