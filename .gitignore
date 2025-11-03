@@ -26,6 +26,10 @@ htmlcov/
 .coverage
 *.cover
 
+# AI関連
+.claude/
+CLAUDE.md
+
 # その他ログ・一時ファイル
 *.log
 *.tmp
