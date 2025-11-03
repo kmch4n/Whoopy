@@ -31,13 +31,13 @@ pip install -r requirements.txt
 ### Basic Usage
 
 ```python
-from whoopy import Client, BatteryState
+from whoopy import Whoopy, BatteryState
 
 # Authenticate with token
-cl = Client(access_token='your_token_here')
+cl = Whoopy(access_token='your_token_here')
 
 # Or authenticate with email and password
-cl = Client(email='your@email.com', password='your_password')
+cl = Whoopy(email='your@email.com', password='your_password')
 ```
 
 ### Account Management
@@ -55,7 +55,7 @@ cl.update_account(
 )
 
 # Create a new account
-cl = Client()  # Initialize without authentication
+cl = Whoopy()  # Initialize without authentication
 account = cl.create_account(
     email="user@example.com",
     password="password123",
@@ -133,12 +133,12 @@ cl.offline()
 
 ## API Reference
 
-### Client Class
+### Whoopy Class
 
 #### Initialization
 
 ```python
-Client(access_token=None, verbose=True, email=None, password=None)
+Whoopy(access_token=None, verbose=True, email=None, password=None)
 ```
 
 **Parameters:**
